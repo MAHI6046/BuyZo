@@ -20,19 +20,29 @@ export default function NavBar({ variant }: NavBarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("home");
   const [pillStyle, setPillStyle] = useState({ left: 0, width: 0 });
+
   const tabsContainerRef = useRef<HTMLDivElement>(null);
   const linkRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   const showPill = variant === "home";
 
   const linkHref = (item: (typeof navLinks)[0]) =>
-    variant === "policy" ? (item.href === "/" ? "/" : `/${item.href}`) : item.href;
+    variant === "policy"
+      ? item.href === "/"
+        ? "/"
+        : `/${item.href}`
+      : item.href;
 
   const updatePillPosition = () => {
     if (!showPill) return;
+
     const container = tabsContainerRef.current;
-    const activeIndex = navLinks.findIndex((l) => l.sectionId === activeTab);
-    const el = activeIndex >= 0 ? linkRefs.current[activeIndex] : null;
+    const activeIndex = navLinks.findIndex(
+      (l) => l.sectionId === activeTab
+    );
+    const el =
+      activeIndex >= 0 ? linkRefs.current[activeIndex] : null;
+
     if (!container || !el) return;
 
     const cr = container.getBoundingClientRect();
@@ -52,6 +62,7 @@ export default function NavBar({ variant }: NavBarProps) {
 
   useEffect(() => {
     if (!showPill) return;
+
     const onResize = () => updatePillPosition();
     window.addEventListener("resize", onResize);
 
@@ -77,7 +88,9 @@ export default function NavBar({ variant }: NavBarProps) {
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
           const id = entry.target.id;
-          const link = navLinks.find((l) => l.sectionId === id);
+          const link = navLinks.find(
+            (l) => l.sectionId === id
+          );
           if (link) setActiveTab(link.sectionId);
         }
       },
@@ -93,7 +106,7 @@ export default function NavBar({ variant }: NavBarProps) {
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-black/5 bg-background/50 backdrop-blur-md">
       <nav className="flex h-14 w-full items-center gap-4 sm:h-16 md:gap-6">
 
-        {/* ✅ LOGO + BRAND */}
+        {/* LOGO */}
         <div className="shrink-0 pl-3 sm:pl-4 md:pl-6">
           <Link href="/" className="flex items-center gap-2" aria-label="BuyZo home">
             <Image
@@ -104,25 +117,37 @@ export default function NavBar({ variant }: NavBarProps) {
               className="h-8 w-auto sm:h-9"
               priority
             />
-            <span className="text-lg font-bold text-foreground">BuyZo</span>
+            <span className="text-lg font-bold text-foreground">
+              BuyZo
+            </span>
           </Link>
         </div>
 
         <div className="min-w-0 flex-1 md:hidden" />
 
-        {/* ✅ DESKTOP MENU */}
+        {/* DESKTOP MENU */}
         <div className="hidden flex-1 items-center justify-end gap-4 md:flex md:gap-6 md:pr-6 lg:gap-8">
-          <div ref={tabsContainerRef} className="relative flex h-10 items-center gap-4">
-
+          <div
+            ref={tabsContainerRef}
+            className="relative flex h-10 items-center gap-4"
+          >
             {showPill && (
               <span
                 className="absolute top-1/2 h-8 -translate-y-1/2 rounded-full border border-white/50 bg-white/40 backdrop-blur-xl transition-all duration-300"
-                style={{ left: pillStyle.left, width: pillStyle.width }}
+                style={{
+                  left: pillStyle.left,
+                  width: pillStyle.width,
+                }}
               />
             )}
 
             {navLinks.map((item, i) => (
-              <span key={item.href} ref={(el) => (linkRefs.current[i] = el)}>
+              <span
+                key={item.href}
+                ref={(el) => {
+                  if (el) linkRefs.current[i] = el;   // ✅ FIXED HERE
+                }}
+              >
                 <Link
                   href={linkHref(item)}
                   onClick={() => setActiveTab(item.sectionId)}
@@ -146,7 +171,7 @@ export default function NavBar({ variant }: NavBarProps) {
           </Link>
         </div>
 
-        {/* ✅ MOBILE MENU BUTTON */}
+        {/* MOBILE BUTTON */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="ml-auto md:hidden"
@@ -155,7 +180,7 @@ export default function NavBar({ variant }: NavBarProps) {
         </button>
       </nav>
 
-      {/* ✅ MOBILE MENU */}
+      {/* MOBILE MENU */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-background p-4">
           {navLinks.map((item) => (
