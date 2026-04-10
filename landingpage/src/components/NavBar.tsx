@@ -24,6 +24,7 @@ export default function NavBar({ variant }: NavBarProps) {
   const linkRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   const showPill = variant === "home";
+
   const linkHref = (item: (typeof navLinks)[0]) =>
     variant === "policy" ? (item.href === "/" ? "/" : `/${item.href}`) : item.href;
 
@@ -33,14 +34,19 @@ export default function NavBar({ variant }: NavBarProps) {
     const activeIndex = navLinks.findIndex((l) => l.sectionId === activeTab);
     const el = activeIndex >= 0 ? linkRefs.current[activeIndex] : null;
     if (!container || !el) return;
+
     const cr = container.getBoundingClientRect();
     const er = el.getBoundingClientRect();
-    setPillStyle({ left: er.left - cr.left, width: er.width });
+
+    setPillStyle({
+      left: er.left - cr.left,
+      width: er.width,
+    });
   };
 
   useEffect(() => {
     if (!showPill) return;
-    const id = requestAnimationFrame(() => updatePillPosition());
+    const id = requestAnimationFrame(updatePillPosition);
     return () => cancelAnimationFrame(id);
   }, [activeTab, showPill]);
 
@@ -48,7 +54,9 @@ export default function NavBar({ variant }: NavBarProps) {
     if (!showPill) return;
     const onResize = () => updatePillPosition();
     window.addEventListener("resize", onResize);
+
     const t = setTimeout(updatePillPosition, 100);
+
     return () => {
       window.removeEventListener("resize", onResize);
       clearTimeout(t);
@@ -57,8 +65,13 @@ export default function NavBar({ variant }: NavBarProps) {
 
   useEffect(() => {
     if (variant !== "home") return;
-    const sections = navLinks.map((l) => document.getElementById(l.sectionId)).filter(Boolean) as HTMLElement[];
+
+    const sections = navLinks
+      .map((l) => document.getElementById(l.sectionId))
+      .filter(Boolean) as HTMLElement[];
+
     if (sections.length === 0) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -70,60 +83,53 @@ export default function NavBar({ variant }: NavBarProps) {
       },
       { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
     );
+
     sections.forEach((el) => observer.observe(el));
+
     return () => observer.disconnect();
   }, [variant]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-black/5 bg-background/50 backdrop-blur-md">
-      <nav className="flex h-14 w-full min-w-0 items-center gap-4 sm:h-16 md:gap-6">
+      <nav className="flex h-14 w-full items-center gap-4 sm:h-16 md:gap-6">
+
+        {/* ✅ LOGO + BRAND */}
         <div className="shrink-0 pl-3 sm:pl-4 md:pl-6">
-          <Link href="/" className="flex items-center" aria-label="DOT DELIVERY home">
+          <Link href="/" className="flex items-center gap-2" aria-label="BuyZo home">
             <Image
-              src="/dotdelivery-mobile-logo.png"
-              alt=""
-              width={48}
-              height={48}
-              quality={100}
-              className="h-8 w-auto sm:h-9 md:hidden"
+              src="/buyzo-logo.png"
+              alt="BuyZo Logo"
+              width={40}
+              height={40}
+              className="h-8 w-auto sm:h-9"
               priority
-              unoptimized
             />
-            <Image
-              src="/dotdelivery-logo.png"
-              alt=""
-              width={192}
-              height={48}
-              quality={100}
-              className="hidden h-4 w-auto sm:h-[18px] md:block"
-              priority
-              unoptimized
-            />
+            <span className="text-lg font-bold text-foreground">BuyZo</span>
           </Link>
         </div>
 
-        <div className="min-w-0 flex-1 md:hidden" aria-hidden />
+        <div className="min-w-0 flex-1 md:hidden" />
 
-        <div className="hidden min-w-0 flex-1 items-center justify-end gap-4 md:flex md:gap-6 md:pr-6 lg:gap-8">
-          <div ref={tabsContainerRef} className="relative flex h-10 min-w-0 items-center gap-3 md:gap-4 lg:gap-6">
+        {/* ✅ DESKTOP MENU */}
+        <div className="hidden flex-1 items-center justify-end gap-4 md:flex md:gap-6 md:pr-6 lg:gap-8">
+          <div ref={tabsContainerRef} className="relative flex h-10 items-center gap-4">
+
             {showPill && (
               <span
-                className="absolute top-1/2 h-8 -translate-y-1/2 rounded-full border border-white/50 bg-white/40 shadow-[0_2px_12px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-xl transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+                className="absolute top-1/2 h-8 -translate-y-1/2 rounded-full border border-white/50 bg-white/40 backdrop-blur-xl transition-all duration-300"
                 style={{ left: pillStyle.left, width: pillStyle.width }}
-                aria-hidden
               />
             )}
+
             {navLinks.map((item, i) => (
-              <span
-                key={item.href}
-                ref={(el) => { linkRefs.current[i] = el; }}
-                className="relative z-10 flex items-center px-1 -mx-1"
-              >
+              <span key={item.href} ref={(el) => (linkRefs.current[i] = el)}>
                 <Link
                   href={linkHref(item)}
                   onClick={() => setActiveTab(item.sectionId)}
-                  className={`rounded-full px-3 py-1.5 text-sm font-medium transition-colors hover:text-foreground ${
-                    activeTab === item.sectionId ? "text-foreground" : "text-muted"
+                  className={`px-3 py-1.5 text-sm font-medium ${
+                    activeTab === item.sectionId
+                      ? "text-foreground"
+                      : "text-muted"
                   }`}
                 >
                   {item.label}
@@ -131,50 +137,39 @@ export default function NavBar({ variant }: NavBarProps) {
               </span>
             ))}
           </div>
+
           <Link
             href={variant === "policy" ? "/#cta" : "#cta"}
-            className="rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90"
+            className="rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background"
           >
             Get started
           </Link>
         </div>
 
+        {/* ✅ MOBILE MENU BUTTON */}
         <button
-          type="button"
-          onClick={() => setMobileMenuOpen((o) => !o)}
-          className="ml-auto flex h-11 min-h-[44px] min-w-[44px] shrink-0 flex-col items-center justify-center gap-1.5 rounded-lg pl-3 pr-4 text-foreground transition-colors hover:bg-foreground/5 md:hidden"
-          aria-expanded={mobileMenuOpen}
-          aria-label="Toggle menu"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="ml-auto md:hidden"
         >
-          <span className={`h-0.5 w-5 bg-current transition-all ${mobileMenuOpen ? "translate-y-2 rotate-45" : ""}`} />
-          <span className={`h-0.5 w-5 bg-current transition-all ${mobileMenuOpen ? "opacity-0" : ""}`} />
-          <span className={`h-0.5 w-5 bg-current transition-all ${mobileMenuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
+          ☰
         </button>
       </nav>
 
-      <div className={`overflow-hidden transition-all duration-200 ease-out md:hidden ${mobileMenuOpen ? "max-h-[min(80vh,400px)] opacity-100" : "max-h-0 opacity-0"}`}>
-        <div className="border-t border-black/5 bg-background/95 px-4 py-4 backdrop-blur-md">
-          <nav className="flex flex-col gap-1" aria-label="Mobile menu">
-            {navLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={linkHref(item)}
-                onClick={() => setMobileMenuOpen(false)}
-                className="min-h-[44px] rounded-lg px-4 py-3 text-sm font-medium text-muted transition-colors hover:bg-foreground/5 hover:text-foreground active:bg-foreground/10"
-              >
-                {item.label}
-              </Link>
-            ))}
+      {/* ✅ MOBILE MENU */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-background p-4">
+          {navLinks.map((item) => (
             <Link
-              href={variant === "policy" ? "/#cta" : "#cta"}
+              key={item.href}
+              href={linkHref(item)}
+              className="block py-2"
               onClick={() => setMobileMenuOpen(false)}
-              className="mt-2 min-h-[44px] rounded-full bg-foreground px-4 py-3 text-center text-sm font-medium text-background transition-opacity hover:opacity-90 active:opacity-80"
             >
-              Get started
+              {item.label}
             </Link>
-          </nav>
+          ))}
         </div>
-      </div>
+      )}
     </header>
   );
 }

@@ -13,7 +13,7 @@ export default function Home() {
       {/* Hero */}
       <section id="home" className="flex min-h-screen flex-col items-center justify-center px-6 pt-16 text-center">
         <p className="mb-4 text-sm font-medium uppercase tracking-widest text-accent">
-          Grocery & more, delivered in Victoria
+          BuyZo - Order anything, delivered to your door
         </p>
         <h1 className="max-w-4xl text-4xl font-semibold leading-[1.15] tracking-tight sm:text-5xl md:text-6xl">
           Order from the app.
