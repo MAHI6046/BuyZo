@@ -21,7 +21,7 @@ export default function Home() {
           <span className="text-muted">We deliver to your door.</span>
         </h1>
         <p className="mt-6 max-w-xl text-lg text-muted">
-          BuyZo connects you with local groceries and everyday essentials across Victoria. Browse by category, search products, or ask BuyZo Bot by voice—then checkout with secure payment and track your order until it arrives.
+          BuyZo connects you with local groceries and everyday essentials across Metpally Mandal. Browse by category, search products, or ask BuyZo Bot by voice—then checkout with secure payment and track your order until it arrives.
         </p>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Link
