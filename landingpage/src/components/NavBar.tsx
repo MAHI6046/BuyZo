@@ -110,7 +110,7 @@ export default function NavBar({ variant }: NavBarProps) {
         <div className="shrink-0 pl-3 sm:pl-4 md:pl-6">
           <Link href="/" className="flex items-center gap-2" aria-label="BuyZo home">
             <Image
-              src="/buyzo-logo.png"
+              src="/Logo.PNG"
               alt="BuyZo Logo"
               width={40}
               height={40}
