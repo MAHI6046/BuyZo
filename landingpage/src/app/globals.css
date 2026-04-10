@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+:root {
+  /* Match Flutter app theme (app_colors.dart) */
+  --background: #fffaf5;
+  --foreground: #1a1a1a;
+  --accent: #ff8a00;
+  --accent-deep: #e56e00;
+  --muted: #6b6b6b;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}

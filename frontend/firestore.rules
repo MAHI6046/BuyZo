@@ -1,0 +1,38 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSelf(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    function backendOwnedUserFieldsChanged() {
+      return request.resource.data.diff(resource.data).changedKeys().hasAny([
+        'delivery_credits_balance',
+        'order_credits_balance',
+        'order_credits_available_balance',
+        'order_credits_total_balance',
+        'referral_code',
+        'referred_by_code',
+        'wallet_updated_at'
+      ]);
+    }
+
+    match /users/{userId} {
+      allow read: if isSelf(userId);
+      allow create: if isSelf(userId)
+        && request.resource.data.keys().hasOnly(['phone', 'name', 'display_name', 'phone_number']);
+      allow update: if isSelf(userId) && !backendOwnedUserFieldsChanged();
+      allow delete: if false;
+    }
+
+    match /users/{userId}/orders/{orderId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow write: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

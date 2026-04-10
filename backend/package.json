@@ -1,0 +1,36 @@
+{
+  "name": "dot-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "main": "api/index.js",
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "dev": "vercel dev",
+    "start": "node scripts/ensurePgProtocolDist.js && node api/index.js",
+    "seed:products": "node scripts/seedProducts.js",
+    "embeddings:backfill": "node scripts/backfillProductEmbeddings.js",
+    "stripe:reconcile": "node scripts/reconcileStripePayments.js",
+    "wallet:reconcile": "node scripts/reconcileWalletRealtime.js",
+    "catalog:reset": "node scripts/resetCatalogData.js",
+    "db:reset:all": "node scripts/resetAllData.js",
+    "orders:verify-hash": "node scripts/verifyOrderIntegrityHashes.js",
+    "admin:dev": "npm --prefix admin-portal run dev -- -p 3001",
+    "admin:build": "npm --prefix admin-portal run build",
+    "admin:start": "npm --prefix admin-portal run start"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.844.0",
+    "@aws-sdk/s3-request-presigner": "^3.844.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "firebase-admin": "^13.6.1",
+    "openai": "^6.25.0",
+    "pg": "^8.13.1",
+    "pg-protocol": "1.11.0",
+    "stripe": "^17.7.0"
+  }
+}
