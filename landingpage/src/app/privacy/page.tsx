@@ -1,8 +1,8 @@
 import PolicyLayout from "@/components/PolicyLayout";
 
 export const metadata = {
-  title: "Privacy Policy | DOT Delivery",
-  description: "Privacy Policy for DOT Delivery operated by VMRS Pty Ltd in Victoria, Australia.",
+  title: "Privacy Policy | BuyZo",
+  description: "Privacy Policy for BuyZo operated by VMRS Pty Ltd in Victoria, Australia.",
 };
 
 export default function PrivacyPage() {
@@ -10,7 +10,7 @@ export default function PrivacyPage() {
     <PolicyLayout title="Privacy Policy">
       <div className="mt-8 text-muted">
         <p className="text-foreground text-lg">
-          VMRS Solutions Pty Ltd operates DotDelivery in Victoria, Australia.
+          VMRS Solutions Pty Ltd operates BuyZo in Victoria, Australia.
         </p>
         <ul className="mt-6 list-disc space-y-2 pl-6">
           <li>We comply with the <strong>Privacy Act 1988 (Cth)</strong> and Australian Privacy Principles.</li>

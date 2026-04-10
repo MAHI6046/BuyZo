@@ -1,8 +1,8 @@
 import PolicyLayout from "@/components/PolicyLayout";
 
 export const metadata = {
-  title: "Cookie Policy | DOT Delivery",
-  description: "Cookie Policy for DOT Delivery website and services.",
+  title: "Cookie Policy | BuyZo",
+  description: "Cookie Policy for BuyZo website and services.",
 };
 
 export default function CookiesPage() {

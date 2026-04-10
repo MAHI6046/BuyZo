@@ -1,8 +1,8 @@
 import PolicyLayout from "@/components/PolicyLayout";
 
 export const metadata = {
-  title: "Terms & Conditions | DOT Delivery",
-  description: "Terms and Conditions for using DOT Delivery in Victoria, Australia.",
+  title: "Terms & Conditions | BuyZo",
+  description: "Terms and Conditions for using BuyZo in Victoria, Australia.",
 };
 
 export default function TermsPage() {
@@ -10,10 +10,10 @@ export default function TermsPage() {
     <PolicyLayout title="Terms & Conditions">
       <div className="mt-8 text-muted">
         <p className="text-foreground text-lg">
-          By using Dot Delivery, you agree to these Terms and Conditions.
+          By using BuyZo, you agree to these Terms and Conditions.
         </p>
         <ul className="mt-6 list-disc space-y-2 pl-6">
-          <li>DOT Delivery is a technology platform connecting customers with local grocery stores and independent delivery partners in Victoria.</li>
+          <li>BuyZo is a technology platform connecting customers with local grocery stores and independent delivery partners in Victoria.</li>
           <li>We do not manufacture, store, or own listed products.</li>
           <li>You must be at least 18 years old to use this service.</li>
           <li>Orders are subject to store confirmation and availability.</li>

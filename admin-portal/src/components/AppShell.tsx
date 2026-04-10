@@ -90,7 +90,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <main className="flex-1 p-4 md:p-8">{children}</main>
         <footer className="px-4 md:px-8 py-6 border-t border-border bg-surface/50 text-center">
           <p className="text-sm text-foreground/40">
-            © {new Date().getFullYear()} DOT Commerce. All rights reserved.
+            © {new Date().getFullYear()} BuyZo. All rights reserved.
           </p>
         </footer>
       </div>

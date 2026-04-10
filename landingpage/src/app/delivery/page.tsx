@@ -1,8 +1,8 @@
 import PolicyLayout from "@/components/PolicyLayout";
 
 export const metadata = {
-  title: "Delivery Policy | DOT Delivery",
-  description: "Delivery Policy for DOT Delivery in Victoria, Australia.",
+  title: "Delivery Policy | BuyZo",
+  description: "Delivery Policy for BuyZo in Victoria, Australia.",
 };
 
 export default function DeliveryPage() {
@@ -10,7 +10,7 @@ export default function DeliveryPage() {
     <PolicyLayout title="Delivery Policy">
       <div className="mt-8 text-muted">
         <ul className="mt-6 list-disc space-y-2 pl-6">
-          <li>DOT Delivery operates within Victoria, Australia.</li>
+          <li>BuyZo operates within Victoria, Australia.</li>
           <li>Estimated delivery times are shown at checkout.</li>
           <li>Delivery fees are displayed before payment.</li>
           <li>Customers must provide accurate delivery information.</li>

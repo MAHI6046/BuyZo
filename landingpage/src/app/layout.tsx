@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DOT Delivery — Grocery & more, delivered",
-  description: "Order groceries and everyday essentials from the DOT Delivery app. Browse products, add to cart with voice or tap, and get delivery to your door.",
+  title: "BuyZo — Grocery & more, delivered",
+  description: "Order groceries and everyday essentials from the BuyZo app. Browse products, add to cart with voice or tap, and get delivery to your door.",
 };
 
 export default function RootLayout({

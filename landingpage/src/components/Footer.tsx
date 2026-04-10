@@ -12,7 +12,7 @@ export default function Footer() {
     <footer className="mt-auto shrink-0 border-t border-black/5 py-10 min-h-[220px]">
       <div className="mx-auto w-full max-w-6xl px-6">
         <div className="mb-6 text-sm text-muted">
-          <p className="font-semibold text-foreground">DOTDELIVERY</p>
+          <p className="font-semibold text-foreground">BuyZo</p>
           <p>Operated by VMRS Pty Ltd</p>
           <p>18 Mt Alexander Rd, Travancore, Victoria, Australia</p>
           <p className="mt-2">
@@ -25,7 +25,7 @@ export default function Footer() {
           </p>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-t border-black/5 pt-6">
-          <span className="text-sm text-muted">© {new Date().getFullYear()} DOT Delivery</span>
+          <span className="text-sm text-muted">© {new Date().getFullYear()} BuyZo</span>
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted" aria-label="Footer">
             {footerLinks.map(({ href, label }) => (
               <Link key={href} href={href} className="transition-colors hover:text-foreground">

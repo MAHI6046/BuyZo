@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DOT Admin Portal",
+  title: "BuyZo Admin Portal",
   description: "High-end product management solution",
 };
 

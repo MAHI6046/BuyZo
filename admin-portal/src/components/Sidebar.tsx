@@ -44,7 +44,7 @@ export default function Sidebar() {
             <ShoppingBag className="text-white w-6 h-6" />
           </div>
           <span className="text-xl font-bold tracking-tight text-foreground">
-            DOT <span className="text-primary">Admin</span>
+            BuyZo <span className="text-primary">Admin</span>
           </span>
         </Link>
         <button 

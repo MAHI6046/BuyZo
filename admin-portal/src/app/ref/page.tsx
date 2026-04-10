@@ -33,7 +33,7 @@ function ReferralLandingContent() {
     <main className="min-h-screen bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 text-white">
       <section className="mx-auto flex min-h-screen w-full max-w-xl flex-col items-center justify-center px-6 py-12 text-center">
         <p className="mb-3 rounded-full border border-white/20 px-3 py-1 text-xs tracking-[0.2em] text-white/70">
-          DOT DELIVERY
+          BuyZo
         </p>
         <h1 className="text-3xl font-bold leading-tight sm:text-4xl">
           Refer friends. Earn free delivery credits.
