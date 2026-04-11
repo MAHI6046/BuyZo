@@ -1,0 +1,190 @@
+{
+  "project_info": {
+    "project_number": "729710635843",
+    "project_id": "letsride-1ee88",
+    "storage_bucket": "letsride-1ee88.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:729710635843:android:e782cf72190f93014e1df6",
+        "android_client_info": {
+          "package_name": "com.anydot.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "729710635843-k94g9mu650vp6lgupv09il6f4vnj67rr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClIs5L--XBOiYQByoJgt4M_WU4wxKcxf8"
+        },
+        {
+          "current_key": "AIzaSyCh2iB5sGnxbj3i6kFPOcuVDWwHoliQI7Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "729710635843-k94g9mu650vp6lgupv09il6f4vnj67rr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "729710635843-0mb1lm6aq2g25ms4mo0n9fva2bqjq7iu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.company.merido"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:729710635843:android:e86033002c1b784e4e1df6",
+        "android_client_info": {
+          "package_name": "com.company.letsride"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "729710635843-9j40pia65m21cac0dcj781g5qjf6nluc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.letsride",
+            "certificate_hash": "66ff58f48b5c37626aca9f0c84caab3f8b5d85e5"
+          }
+        },
+        {
+          "client_id": "729710635843-k94g9mu650vp6lgupv09il6f4vnj67rr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClIs5L--XBOiYQByoJgt4M_WU4wxKcxf8"
+        },
+        {
+          "current_key": "AIzaSyCh2iB5sGnxbj3i6kFPOcuVDWwHoliQI7Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "729710635843-k94g9mu650vp6lgupv09il6f4vnj67rr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "729710635843-0mb1lm6aq2g25ms4mo0n9fva2bqjq7iu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.company.merido"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:729710635843:android:70cc136989e41a794e1df6",
+        "android_client_info": {
+          "package_name": "com.company.merido"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "729710635843-h55nivl0kakiduf1g2a0fps4vehojm8f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.merido",
+            "certificate_hash": "66ff58f48b5c37626aca9f0c84caab3f8b5d85e5"
+          }
+        },
+        {
+          "client_id": "729710635843-k94g9mu650vp6lgupv09il6f4vnj67rr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClIs5L--XBOiYQByoJgt4M_WU4wxKcxf8"
+        },
+        {
+          "current_key": "AIzaSyCh2iB5sGnxbj3i6kFPOcuVDWwHoliQI7Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "729710635843-k94g9mu650vp6lgupv09il6f4vnj67rr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "729710635843-0mb1lm6aq2g25ms4mo0n9fva2bqjq7iu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.company.merido"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:729710635843:android:770641c8fabd63be4e1df6",
+        "android_client_info": {
+          "package_name": "com.rocketmart.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "729710635843-f50rnftj4492s8vsdvjf9v4irl0l3cs9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rocketmart.app",
+            "certificate_hash": "66ff58f48b5c37626aca9f0c84caab3f8b5d85e5"
+          }
+        },
+        {
+          "client_id": "729710635843-k94g9mu650vp6lgupv09il6f4vnj67rr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClIs5L--XBOiYQByoJgt4M_WU4wxKcxf8"
+        },
+        {
+          "current_key": "AIzaSyCh2iB5sGnxbj3i6kFPOcuVDWwHoliQI7Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "729710635843-k94g9mu650vp6lgupv09il6f4vnj67rr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "729710635843-0mb1lm6aq2g25ms4mo0n9fva2bqjq7iu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.company.merido"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
