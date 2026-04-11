@@ -5,7 +5,8 @@ function isPublicRoute(pathname: string): boolean {
   return (
     pathname === '/login' ||
     pathname === '/ref' ||
-    pathname.startsWith('/api/auth/')
+    pathname.startsWith('/api/auth/') ||
+    pathname === '/api/dashboard-stats'
   );
 }
 
@@ -13,6 +14,14 @@ export function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
   const sessionCookie = request.cookies.get(ADMIN_SESSION_COOKIE_NAME)?.value;
   const hasSessionCookie = Boolean(sessionCookie);
+
+  if (pathname === '/api/dashboard-stats' || pathname === '/api/auth/me') {
+    console.log('[admin-portal middleware]', {
+      pathname,
+      hasSessionCookie,
+      cookieLength: sessionCookie?.length || 0,
+    });
+  }
 
   if (isPublicRoute(pathname)) {
     return NextResponse.next();

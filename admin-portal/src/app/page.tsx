@@ -14,9 +14,12 @@ import {
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { useAuthStore } from '@/lib/store';
 
 export default function Dashboard() {
   const [loading, setLoading] = useState(true);
+  const user = useAuthStore((state) => state.user);
+  const authReady = useAuthStore((state) => state.authReady);
   const [stats, setStats] = useState({
     totalProducts: 0,
     activeProducts: 0,
@@ -25,18 +28,36 @@ export default function Dashboard() {
   });
 
   useEffect(() => {
+    if (!authReady || !user) {
+      setLoading(false);
+      return;
+    }
+
     fetch('/api/dashboard-stats')
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Failed to load dashboard stats (${res.status})`);
+        }
+        return res.json();
+      })
+      .then((data) => {
         setStats({
           totalProducts: Number(data?.totalProducts || 0),
           activeProducts: Number(data?.activeProducts || 0),
           totalCategories: Number(data?.totalCategories || 0),
-          lowStock: Number(data?.lowStock || 0)
+          lowStock: Number(data?.lowStock || 0),
+        });
+      })
+      .catch(() => {
+        setStats({
+          totalProducts: 0,
+          activeProducts: 0,
+          totalCategories: 0,
+          lowStock: 0,
         });
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [authReady, user]);
 
   const statCards = [
     { name: 'Total Products', value: stats.totalProducts, icon: Package, color: 'text-blue-500', bg: 'bg-blue-50', trend: '+12%' },

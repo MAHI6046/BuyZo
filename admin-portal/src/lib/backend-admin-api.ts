@@ -74,6 +74,11 @@ export async function backendAdminFetchJson<T>(
 
   const requestOnce = async (baseUrl: string): Promise<T> => {
     const url = `${baseUrl}${path.startsWith('/') ? path : `/${path}`}`;
+    console.log('[backend-admin-api] request', {
+      url,
+      path,
+      hasAdminKey: Boolean(String(process.env.ADMIN_PORTAL_API_KEY || '').trim()),
+    });
     const response = await fetch(url, {
       ...options,
       headers,
@@ -93,8 +98,18 @@ export async function backendAdminFetchJson<T>(
     }
 
     if (!response.ok) {
+      console.log('[backend-admin-api] response error', {
+        url,
+        status: response.status,
+        payload,
+      });
       throw new BackendAdminApiError(response.status, payload, baseUrl);
     }
+
+    console.log('[backend-admin-api] response ok', {
+      url,
+      status: response.status,
+    });
 
     return payload as T;
   };
@@ -140,5 +155,12 @@ export function toBackendErrorResponse(error: unknown) {
     );
   }
 
-  return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  console.error('Backend admin fetch unhandled error:', error);
+  return NextResponse.json(
+    { 
+      error: 'Internal Server Error',
+      details: error instanceof Error ? error.message : String(error)
+    }, 
+    { status: 500 }
+  );
 }

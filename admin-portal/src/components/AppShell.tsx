@@ -21,6 +21,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const setUser = useAuthStore((state) => state.setUser);
+  const setAuthReady = useAuthStore((state) => state.setAuthReady);
   const clearUser = useAuthStore((state) => state.clearUser);
   const [checkingSession, setCheckingSession] = useState(true);
 
@@ -33,6 +34,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
     async function validateSession() {
       if (isPublicPage) {
+        setAuthReady(true);
         setCheckingSession(false);
         return;
       }
@@ -52,6 +54,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           }
 
           if (!cancelled) {
+            setAuthReady(true);
             setCheckingSession(false);
           }
           return;
@@ -61,6 +64,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       }
 
       clearUser();
+      setAuthReady(true);
       if (!cancelled) {
         const next = pathname && pathname !== '/' ? `?next=${encodeURIComponent(pathname)}` : '';
         router.replace(`/login${next}`);
@@ -72,7 +76,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     return () => {
       cancelled = true;
     };
-  }, [clearUser, isPublicPage, pathname, router, setUser]);
+  }, [clearUser, isPublicPage, pathname, router, setAuthReady, setUser]);
 
   if (isPublicPage) {
     return <main className="min-h-screen">{children}</main>;

@@ -193,6 +193,10 @@ export async function getAdminSession(): Promise<AdminSession | null> {
   try {
     const cookieStore = await cookies();
     const sessionCookie = cookieStore.get(ADMIN_SESSION_COOKIE_NAME)?.value || '';
+    console.log('[admin-auth] getAdminSession', {
+      hasSessionCookie: Boolean(sessionCookie),
+      cookieLength: sessionCookie.length,
+    });
     if (!sessionCookie) {
       return null;
     }
@@ -201,8 +205,13 @@ export async function getAdminSession(): Promise<AdminSession | null> {
       sessionCookie,
       verifySessionRevocation,
     );
+    console.log('[admin-auth] verifySessionCookie ok', {
+      uid: decoded.uid,
+      email: decoded.email,
+    });
     const email = normalizeEmail(decoded.email);
     if (!email || !isAllowedAdminEmail(email)) {
+      console.log('[admin-auth] email not allowed', { email });
       return null;
     }
 

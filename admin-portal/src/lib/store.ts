@@ -21,12 +21,16 @@ interface AuthUser {
 
 interface AuthState {
   user: AuthUser | null;
+  authReady: boolean;
   setUser: (user: AuthUser) => void;
+  setAuthReady: (ready: boolean) => void;
   clearUser: () => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
   user: null,
+  authReady: false,
   setUser: (user) => set({ user }),
+  setAuthReady: (ready) => set({ authReady: ready }),
   clearUser: () => set({ user: null }),
 }));
